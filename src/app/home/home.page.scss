@@ -11,12 +11,16 @@
 #container strong {
   font-size: 20px;
   line-height: 26px;
+  
 }
-
+#header{
+  text-align: center;
+}
 #container p {
   font-size: 16px;
   line-height: 22px;
-
+  padding-bottom: 30px;
+  padding-top: 30px;
   color: #8c8c8c;
 
   margin: 0;
@@ -24,4 +28,30 @@
 
 #container a {
   text-decoration: none;
+}
+
+ion-content{
+  --ion-background-color: linear-gradient( #f4f5f8 0%, #83d6eb);
+  font-family: URIAL FONT;
+}
+
+ion-toolbar{
+  --ion-background-color: transparent;
+  --opacity: 0%;  
+}
+
+.signin-btn{
+  margin-top: 30px;
+  text-align: center;
+}
+
+#login-btn{
+  --ion-color: #83d6eb;
+}
+ion-img{
+  height: 200px;
+  width: auto;
+  margin: auto;
+  display: block;
+  margin-bottom: 30px;
 }

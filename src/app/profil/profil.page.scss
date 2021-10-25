@@ -1,0 +1,29 @@
+ion-img{
+    height: 100px;
+    width: auto;
+    margin-top: 10px;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  ion-content{
+    --ion-background-color: linear-gradient( #f4f5f8 0%, #83d6eb);
+  
+  }
+  
+  ion-toolbar{
+    --ion-background-color: transparent;
+    --opacity: 0%; 
+    text-align: center; 
+  }
+
+ion-item {
+    --background: none;
+}
+
+p{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20%;
+
+}

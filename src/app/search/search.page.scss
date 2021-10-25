@@ -1,0 +1,22 @@
+ion-img{
+    height: 50px;
+    width: auto;
+    margin-top: 10%;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  ion-content{
+    --ion-background-color: linear-gradient( #f4f5f8 0%, #83d6eb);
+  
+  }
+  
+  ion-toolbar{
+    --ion-background-color: transparent;
+    --opacity: 0%; 
+    text-align: center; 
+  }
+
+ion-item {
+    --background: none;
+}

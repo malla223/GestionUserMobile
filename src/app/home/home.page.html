@@ -1,20 +1,23 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border" id="header">
   <ion-toolbar>
     <ion-title>
-      Blank
+      ORANGE DIGITAL KALANSO
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>BIENVENUE A</strong>
+    
+    <div>
+      <ion-img src="assets/images/odk.png"></ion-img>
+    </div>
+   
+    <ion-button fill="solid" shape="round" id="login-btn" [routerLink]="['/connexion']">LOGIN</ion-button>
+    <ion-button fill="solid" shape="round" color="dark" class="register-btn" [routerLink]="['/register']">REGISTER</ion-button>
   </div>
 </ion-content>

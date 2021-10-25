@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Accueil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p>Vous etes connecté avec le login <b>{{userEmail}}</b></p>
+  <ion-list class="padding">
+    <ion-item>
+        <ion-label><b>Login </b></ion-label> 
+        <ion-label><b>Nom</b> </ion-label>    
+        <ion-label><b>Prénom</b> </ion-label>
+    </ion-item>
+ </ion-list>
+
+ <ion-row>
+  <ion-col>
+    <ion-button (click)="logout()" type="submit" color="primary" shape="round">Déconnexion</ion-button>
+  </ion-col>
+</ion-row>
+</ion-content>

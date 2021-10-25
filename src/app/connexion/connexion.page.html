@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding">
+      <div>
+        <ion-img src="assets/images/connexion.png"></ion-img>
+      </div>
+    <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+      <ion-item lines="full">
+        <ion-label position="floating">Login</ion-label>
+        <ion-input  type="email" formControlName="email" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Mot de Passe</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+      <ion-item lines=none>
+        <ion-button color="primary" fill="clear" slot="end" [routerLink]="['/mtd-oublie']">Mot de passe oublié?</ion-button>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="!validations_form.valid" type="submit" color="primary" shape="round">Connexion</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>
