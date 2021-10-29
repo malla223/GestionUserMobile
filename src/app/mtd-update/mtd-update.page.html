@@ -13,7 +13,7 @@
     <ion-img src="assets/images/update.png"></ion-img>
   </div>
 
-  <form>
+  <form class="form" [formGroup]="saveForm" (ngSubmit)="resetPassword()">
     <ion-item lines="full">
       <ion-label position="floating">Ancien mot de passe</ion-label>
       <ion-input type="password"  name="password" required></ion-input>

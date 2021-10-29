@@ -1,7 +1,9 @@
 // app.component.ts
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Platform } from '@ionic/angular';
+import { AuthenService } from './services/authen.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +11,10 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+ navigate: any;
 
-
-  currentPageTitle = 'Menu';
-
-  appPages = [
+  sideMenu(){
+    this.navigate = [
     {
       title: 'Profil',
       url: '/profil',
@@ -25,30 +26,33 @@ export class AppComponent {
       icon: 'search-circle'
     },
     {
-      title: 'Re-installé le password',
+      title: 'Changer le Password',
       url: '/mtd-update',
       icon: 'key'
     },
     {
-      title: 'Accueil',
-      url: '/home',
-      icon: 'home'
-    },
-    {
       title: 'DECONNEXION',
-      url: '/accueil',
+      url: '/home',
       icon: 'close-circle'
-    }
-  ];
+    },
+  ]
+
+}
 
   constructor(
+    private authService: AuthenService,
     private platform: Platform,
+    public router: Router
   ) {
-    this.initializeApp();
+    this.sideMenu();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-    });
+
+
+  logout() {
+    this.authService.logoutUser()
+    this.router.navigate(['/home']);
+    
   }
+
 }

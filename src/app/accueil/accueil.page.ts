@@ -1,7 +1,10 @@
 // dashboard.page.ts
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
 import { AuthenService } from '../services/authen.service';
+
 
 @Component({
   selector: 'app-accueil',
@@ -10,36 +13,36 @@ import { AuthenService } from '../services/authen.service';
 })
 export class AccueilPage implements OnInit {
 
-  userEmail: string;
+  errorMessage: string ="";
+  liste: any[];
 
   constructor(
+    private load: LoadingController,
     private navCtrl: NavController,
-    private authService: AuthenService
-  ) { }
+    private authService: AuthenService,
+    public firestore: AngularFirestore,
+    private router: Router
+  ) {this.listUsers()}
 
-  ngOnInit() {
+  ngOnInit() {}
 
-    this.authService.userDetails().subscribe(res => {
-      console.log('res', res);
-      if (res !== null) {
-        this.userEmail = res.email;
-      } else {
-        this.navCtrl.navigateBack('');
-      }
-    }, err => {
-      console.log('err', err);
+  //recuperation de la liste
+  listUsers(){
+    this.firestore.collection('utilisateur').valueChanges()
+    .subscribe(response => {
+      this.liste = response;
     })
-
   }
 
-  logout() {
+
+  //methode deconnexion
+ logout() {
     this.authService.logoutUser()
       .then(res => {
-        console.log(res);
-        this.navCtrl.navigateBack('');
-      })
-      .catch(error => {
-        console.log(error);
+      }, err => {
+        console.log(err);
       })
   }
-}
+  }
+ 
+

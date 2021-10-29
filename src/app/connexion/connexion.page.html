@@ -14,14 +14,35 @@
       </div>
     <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
       <ion-item lines="full">
-        <ion-label position="floating">Login</ion-label>
-        <ion-input  type="email" formControlName="email" required></ion-input>
+        <ion-input  type="email" formControlName="email" placeholder="E-mail" required>
+          <ion-icon name="mail"></ion-icon>
+        </ion-input>
       </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message"
+            *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
 
       <ion-item lines="full">
-        <ion-label position="floating">Mot de Passe</ion-label>
-        <ion-input type="password" formControlName="password" required></ion-input>
+        <ion-input type="password" formControlName="password" placeholder="Mot de passe" required>
+          <ion-icon name="key"></ion-icon>
+        </ion-input>
       </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message"
+            *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+
       <ion-item lines=none>
         <ion-button color="primary" fill="clear" slot="end" [routerLink]="['/mtd-oublie']">Mot de passe oublié?</ion-button>
       </ion-item>

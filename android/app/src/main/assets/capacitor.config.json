@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "GestionUser",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

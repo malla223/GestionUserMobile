@@ -14,6 +14,15 @@
   </div>
 
   <div>
-      <ion-searchbar value="Chercher un utilisateur"></ion-searchbar>
+      <ion-searchbar (ionInput)="filterlist($event)" value="Chercher un utilisateur"></ion-searchbar>
   </div>
+  <ion-item>
+    <ion-label><b>Nom </b> </ion-label>  
+    <ion-label><b>Prénom </b> </ion-label>
+</ion-item>
+  <ion-item  *ngFor="let liste of list">
+    <ion-label>{{liste.nom}}</ion-label>
+    <ion-label>{{liste.prenom}}</ion-label>
+  </ion-item>
 </ion-content>
+ 

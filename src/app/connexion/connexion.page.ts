@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { AuthenService } from '../services/authen.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-connexion',
@@ -15,7 +16,8 @@ export class ConnexionPage implements OnInit {
   errorMessage: string = '';
 
   constructor(
-
+    public toastCtrl: ToastController,
+    private load: LoadingController,
     private navCtrl: NavController,
     private authService: AuthenService,
     private formBuilder: FormBuilder
@@ -26,39 +28,45 @@ export class ConnexionPage implements OnInit {
 
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
-        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        Validators.required
       ])),
       password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
         Validators.required
       ])),
     });
   }
 
-
   validation_messages = {
-    'username': [
-      { type: 'required', message: 'E-mail obligatoire' }
+    'email': [
+      { type: 'required', message: 'E-mail obligatoire.' },
+      { type: 'pattern', message: 'Entrer un e-mail valide' }
     ],
     'password': [
-      { type: 'required', message: 'Password obligatoire' }
+      { type: 'required', message: 'Mot de passe obligatoire' }
     ]
   };
 
-
-  loginUser(value) {
+  async loginUser(value) {
+    const load = await this.load.create({
+      message: "Connexion en cours..."
+    });
+    load.present();
     this.authService.loginUser(value)
       .then(res => {
-        console.log(res);
-        this.errorMessage = "";
-        this.navCtrl.navigateForward('/accueil');
+        if(res){
+          load.dismiss();
+          console.log(res);
+          this.errorMessage = "";
+          this.navCtrl.navigateForward('/accueil');
+        }
+        
       }, err => {
-        this.errorMessage = err.message;
+        this.errorMessage = err.toastCtrl;
       })
   }
 
-  goToRegisterPage() {
-    this.navCtrl.navigateForward('/register');
-  }
 
 }
 

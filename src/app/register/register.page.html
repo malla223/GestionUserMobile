@@ -12,30 +12,37 @@
     <div>
         <ion-img src="assets/images/user.png"></ion-img>
       </div>
-    <form>
+    <form class="form" [formGroup]="saveForm" (ngSubmit)="enregistrer()">
       <ion-item lines="full">
-        <ion-label position="floating">Nom</ion-label>
-        <ion-input  type="text" name="nom" required></ion-input>
+
+        <ion-input  type="text" formControlName="nom" placeholder="Nom" required>
+          <ion-icon name="person"></ion-icon>
+        </ion-input>
       </ion-item>
 
       <ion-item lines="full">
-        <ion-label position="floating">Prénom</ion-label>
-        <ion-input  type="text" name="prenom" required></ion-input>
+        <ion-input  type="text" formControlName="prenom" placeholder="Prénom" required>
+          <ion-icon name="person"></ion-icon>
+        </ion-input>
       </ion-item>
 
       <ion-item lines="full">
-        <ion-label position="floating">Login</ion-label>
-        <ion-input  type="email" name="login" required></ion-input>
+        <ion-input  type="email" formControlName="email" placeholder="E-mail"  required>
+          <ion-icon name="mail"></ion-icon>
+        </ion-input>
       </ion-item>
 
+
       <ion-item lines="full">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input  type="password"  name="password" required></ion-input>
+        <ion-input  type="password"  formControlName="password" placeholder="Mot de passe"  required>
+          <ion-icon name="key"></ion-icon>
+        </ion-input>
       </ion-item>
+
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" shape="round">CREER</ion-button>
+          <ion-button [disabled]="!saveForm.valid" type="submit" color="primary" shape="round">CREER</ion-button>
         </ion-col>
       </ion-row>
     </form>
